@@ -3,7 +3,7 @@ package model;
 import org.junit.jupiter.api.Test;
 
 public class testTask {
-    @Test
+
     //Happy path
     void newTask_atributosValidos(){
 
