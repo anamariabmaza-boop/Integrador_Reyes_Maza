@@ -1,5 +1,5 @@
 package model;
 
-public enum statusTask {
+public enum StatusTask {
     TODO, IN_PROGRESS, DONE;
 }

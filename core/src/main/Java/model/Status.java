@@ -1,5 +1,5 @@
 package model;
 
-public enum status {
+public enum Status {
     PLANNED, ACTIVE, CLOSED;
 }
