@@ -3,15 +3,16 @@ package usecase;
 import exception.BusinessRuleViolationException;
 import exception.ResourceNotFoundException;
 import model.Project;
+import model.StatusProject;
 import model.Task;
-import model.status;
-import model.statusTask;
+import model.StatusProject;
+import model.StatusTask;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import output.projectRepository;
+import output.ProjectRepository;
 import output.taskRepository;
 
 import java.time.Clock;
@@ -26,7 +27,7 @@ public class test_useCaseCreateTask {
 
 
     @Mock
-    projectRepository projectRepository;
+    ProjectRepository projectRepository;
     @Mock
     taskRepository taskRepository;
 
@@ -36,14 +37,14 @@ public class test_useCaseCreateTask {
     void test_useCaseCreateTask_Sucessfull(){
         CreateTaskUseCase useCase= new CreateTaskUseCase(clock,projectRepository,taskRepository);
         Project project= Project.newProject(91L,"P", LocalDate.now(clock),LocalDate.now(clock).plusDays(3),
-                status.ACTIVE,"prueba");
-        when(projectRepository.findById(91L)).thenReturn(project);
+                StatusProject.ACTIVE,"prueba",clock);
+        when(projectRepository.findProjectById(91L)).thenReturn(project);
 
         when(taskRepository.saveTask(any(Task.class))).thenReturn(Task.newTask(12L,project,122,
-                "juan", statusTask.IN_PROGRESS, LocalDateTime.now(clock),LocalDateTime.now(clock).plusDays(3)));
+                "juan", StatusTask.IN_PROGRESS, LocalDateTime.now(clock),LocalDateTime.now(clock).plusDays(3)));
 
         Task task= useCase.createTask(12L,91L,122,
-                "juan", statusTask.IN_PROGRESS, LocalDateTime.now(clock),LocalDateTime.now(clock));
+                "juan", StatusTask.IN_PROGRESS, LocalDateTime.now(clock),LocalDateTime.now(clock));
 
         Assertions.assertNotNull(task);
     }
@@ -51,41 +52,41 @@ public class test_useCaseCreateTask {
     void useCase_UNsucessfull_ProyectNotExist(){
         CreateTaskUseCase useCase= new CreateTaskUseCase(clock,projectRepository,taskRepository);
       /*  Project project= Project.newProject(91L,"P", LocalDate.now(clock),LocalDate.now(clock).plusDays(3),
-                status.ACTIVE,"prueba");
+                Status.ACTIVE,"prueba");
 
        */
-        when(projectRepository.findById(91L)).thenReturn(null);
+        when(projectRepository.findProjectById(91L)).thenReturn(null);
 
         /*
         when(taskRepository.saveTask(any(Task.class))).thenReturn(Task.newTask(12L,project,122,
-                "juan", statusTask.IN_PROGRESS, LocalDateTime.now(clock),LocalDateTime.now(clock).plusDays(3)));
+                "juan", StatusTask.IN_PROGRESS, LocalDateTime.now(clock),LocalDateTime.now(clock).plusDays(3)));
 
         Task task= useCase.createTask(12L,91L,122,
-                "juan", statusTask.IN_PROGRESS, LocalDateTime.now(clock),LocalDateTime.now(clock));
+                "juan", StatusTask.IN_PROGRESS, LocalDateTime.now(clock),LocalDateTime.now(clock));
 
 
          */
         Assertions.assertThrows(ResourceNotFoundException.class,()->useCase.createTask(12L,91L,122,
-                "juan", statusTask.IN_PROGRESS, LocalDateTime.now(clock),LocalDateTime.now(clock)));
+                "juan", StatusTask.IN_PROGRESS, LocalDateTime.now(clock),LocalDateTime.now(clock)));
     }
     @Test
     void useCase_UNsucessfull_ProyectClose(){
         CreateTaskUseCase useCase= new CreateTaskUseCase(clock,projectRepository,taskRepository);
        Project project= Project.newProject(91L,"P", LocalDate.now(clock),LocalDate.now(clock).plusDays(3),
-                status.CLOSED,"prueba");
+                StatusProject.CLOSED,"prueba", clock);
 
 
-        when(projectRepository.findById(91L)).thenReturn(project);
+        when(projectRepository.findProjectById(91L)).thenReturn(project);
 
         /*
         when(taskRepository.saveTask(any(Task.class))).thenReturn(Task.newTask(12L,project,122,
-                "juan", statusTask.IN_PROGRESS, LocalDateTime.now(clock),LocalDateTime.now(clock).plusDays(3)));
+                "juan", StatusTask.IN_PROGRESS, LocalDateTime.now(clock),LocalDateTime.now(clock).plusDays(3)));
 
         Task task= useCase.createTask(12L,91L,122,
-                "juan", statusTask.IN_PROGRESS, LocalDateTime.now(clock),LocalDateTime.now(clock));
+                "juan", StatusTask.IN_PROGRESS, LocalDateTime.now(clock),LocalDateTime.now(clock));
          */
         Assertions.assertThrows(BusinessRuleViolationException.class,()->useCase.createTask(12L,91L,122,
-                "juan", statusTask.IN_PROGRESS, LocalDateTime.now(clock),LocalDateTime.now(clock)));
+                "juan", StatusTask.IN_PROGRESS, LocalDateTime.now(clock),LocalDateTime.now(clock)));
     }
 
 

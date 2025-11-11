@@ -5,8 +5,8 @@ import exception.ResourceNotFoundException;
 import input.CreateTaskInput;
 import model.Project;
 import model.Task;
-import model.statusTask;
-import output.projectRepository;
+import model.StatusTask;
+import output.ProjectRepository;
 import output.taskRepository;
 
 import java.time.Clock;
@@ -15,10 +15,10 @@ import java.time.LocalDateTime;
 public class CreateTaskUseCase implements CreateTaskInput {
 
     private final Clock clock;
-    private final projectRepository projectRepository;
+    private final ProjectRepository projectRepository;
     private final taskRepository taskRepository;
 
-    public CreateTaskUseCase(Clock clock, projectRepository projectRepository, taskRepository taskRepository) {
+    public CreateTaskUseCase(Clock clock, ProjectRepository projectRepository, taskRepository taskRepository) {
         this.clock = clock;
         this.projectRepository = projectRepository;
         this.taskRepository = taskRepository;
@@ -26,13 +26,13 @@ public class CreateTaskUseCase implements CreateTaskInput {
     }
 
     @Override
-    public Task createTask(Long idTask, Long idProject, Integer estimateHours, String assign, statusTask status, LocalDateTime finishAt, LocalDateTime createAt) {
+    public Task createTask(Long idTask, Long idProject, Integer estimateHours, String assign, StatusTask status, LocalDateTime finishAt, LocalDateTime createAt) {
 
-        Project project = projectRepository.findById(idProject);
+        Project project = projectRepository.findProjectById(idProject);
         if(project == null){
             throw new ResourceNotFoundException("Project not exist");
         }
-        if(project.getProjectStatus()== model.status.CLOSED){
+        if(project.getProjectStatus()== model.StatusProject.CLOSED){
             throw new BusinessRuleViolationException("Project is already closed");
         }
 

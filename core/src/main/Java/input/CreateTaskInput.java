@@ -1,7 +1,7 @@
 package input;
 
 import model.Task;
-import model.statusTask;
+import model.StatusTask;
 
 import java.time.LocalDateTime;
 
@@ -10,7 +10,7 @@ public interface CreateTaskInput {
                     Long idProject,
                     Integer estimateHours,
                     String assign,
-                    statusTask status,
+                    StatusTask status,
                     LocalDateTime finishAt,
                     LocalDateTime createAt);
 }
