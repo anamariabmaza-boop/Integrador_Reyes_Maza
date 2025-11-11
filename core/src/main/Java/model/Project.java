@@ -11,7 +11,7 @@ public class Project {
     private String name;
     private LocalDate startDate;
     private LocalDate endDate;
-    private StatusProject projectStatusProject;
+    private StatusProject projectStatus;
     private String description;
 
     private Project(Long id, String name, LocalDate startDate, LocalDate endDate, StatusProject projectStatusProject, String description) {
@@ -19,7 +19,7 @@ public class Project {
         this.name = name;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.projectStatusProject = projectStatusProject;
+        this.projectStatus = projectStatusProject;
         this.description = description;
     }
 
@@ -66,7 +66,7 @@ public class Project {
     public String getName() {return name;}
     public LocalDate getStartDate() {return startDate;}
     public LocalDate getEndDate() {return endDate;}
-    public StatusProject getProjectStatus() {return projectStatusProject;}
+    public StatusProject getProjectStatus() {return projectStatus;}
     public String getDescription() {return description;}
 
 }
