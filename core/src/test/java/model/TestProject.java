@@ -20,14 +20,14 @@ public class TestProject {
                 "Website Redesign",
                 LocalDate.now(Clock.systemDefaultZone()),
                 LocalDate.now(Clock.systemDefaultZone()).plusDays(5),
-                Status.PLANNED,
+                StatusProject.PLANNED,
                 "Migrate and redesign website",
                 Clock.systemDefaultZone()
         );
 
         Assertions.assertEquals(Long.valueOf(1L), project.getProjectId());
         Assertions.assertEquals("Website Redesign", project.getName());
-        Assertions.assertEquals(Status.PLANNED, project.getProjectStatus());
+        Assertions.assertEquals(StatusProject.PLANNED, project.getProjectStatus());
         Assertions.assertEquals("Migrate and redesign website", project.getDescription());
         Assertions.assertEquals(LocalDate.now(Clock.systemDefaultZone()), project.getStartDate());
     }
@@ -41,7 +41,7 @@ public class TestProject {
                         "Website Redesign",
                         LocalDate.now(),
                         LocalDate.now().plusDays(5),
-                        Status.PLANNED,
+                        StatusProject.PLANNED,
                         "Migrate and redesign website",
                         Clock.systemDefaultZone()
                 ));
@@ -55,7 +55,7 @@ public class TestProject {
                 "Website Redesign",
                 LocalDate.now(Clock.systemDefaultZone()),
                 LocalDate.now(Clock.systemDefaultZone()).plusDays(5),
-                Status.PLANNED,
+                StatusProject.PLANNED,
                 "Migrate and redesign website",
                 Clock.systemDefaultZone()
         ));
@@ -72,7 +72,7 @@ public class TestProject {
                         name,
                         LocalDate.now(),
                         LocalDate.now().plusDays(5),
-                        Status.PLANNED,
+                        StatusProject.PLANNED,
                         "Migrate and redesign website",
                         Clock.systemDefaultZone()
                 ));
@@ -87,7 +87,7 @@ public class TestProject {
                         "Website Redesign",
                         null,
                         LocalDate.now().plusDays(5),
-                        Status.PLANNED,
+                        StatusProject.PLANNED,
                         "Migrate and redesign website",
                         Clock.systemDefaultZone()
                 ));
@@ -102,7 +102,7 @@ public class TestProject {
                         "Website Redesign",
                         LocalDate.now(Clock.systemDefaultZone()).minusDays(1),
                         LocalDate.now(Clock.systemDefaultZone()).plusDays(5),
-                        Status.PLANNED,
+                        StatusProject.PLANNED,
                         "Migrate and redesign website",
                         Clock.systemDefaultZone()
                 ));
@@ -117,7 +117,7 @@ public class TestProject {
                         "Website Redesign",
                         LocalDate.now(Clock.systemDefaultZone()),
                         null,
-                        Status.PLANNED,
+                        StatusProject.PLANNED,
                         "Migrate and redesign website",
                         Clock.systemDefaultZone()
                 ));
@@ -132,7 +132,7 @@ public class TestProject {
                         "Website Redesign",
                         LocalDate.now(Clock.systemDefaultZone()).plusDays(3),
                         LocalDate.now(Clock.systemDefaultZone()),
-                        Status.PLANNED,
+                        StatusProject.PLANNED,
                         "Migrate and redesign website",
                         Clock.systemDefaultZone()
                 ));
@@ -149,7 +149,7 @@ public class TestProject {
                         "Website Redesign",
                         LocalDate.now(),
                         LocalDate.now().plusDays(5),
-                        Status.PLANNED,
+                        StatusProject.PLANNED,
                         description,
                         Clock.systemDefaultZone()
                 ));

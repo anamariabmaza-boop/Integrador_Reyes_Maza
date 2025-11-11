@@ -1,9 +1,8 @@
 package usecase;
 
 import exception.BusinessRuleViolationException;
-import exception.DuplicateResourceException;
 import model.Project;
-import model.Status;
+import model.StatusProject;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -31,7 +30,7 @@ class CreateProjectUseCaseTest {
                 "Website Redesign",
                 LocalDate.now(clock),
                 LocalDate.now(clock).plusDays(5),
-                Status.PLANNED,
+                StatusProject.PLANNED,
                 "Migrate and redesign website",
                 clock
         );
@@ -51,7 +50,7 @@ class CreateProjectUseCaseTest {
                 "Website Redesign",
                 LocalDate.now(clock),
                 LocalDate.now(clock).plusDays(5),
-                Status.PLANNED,
+                StatusProject.PLANNED,
                 "Migrate and redesign website",
                 clock
         );

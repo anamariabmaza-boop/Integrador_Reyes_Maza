@@ -21,7 +21,7 @@ public class TestTask {
                 "Website Redesign",
                 LocalDate.now(),
                 LocalDate.now().plusDays(5),
-                Status.PLANNED,
+                StatusProject.PLANNED,
                 "Algo",
                 Clock.systemDefaultZone()
         );
@@ -56,7 +56,7 @@ public class TestTask {
                 "Website Redesign",
                 LocalDate.now(),
                 LocalDate.now().plusDays(5),
-                Status.PLANNED,
+                StatusProject.PLANNED,
                 "Migrate and redesign website",
                 Clock.systemDefaultZone()
         );
@@ -84,7 +84,7 @@ public class TestTask {
                 "Website Redesign",
                 LocalDate.now(),
                 LocalDate.now().plusDays(5),
-                Status.PLANNED,
+                StatusProject.PLANNED,
                 "Migrate and redesign website",
                 Clock.systemDefaultZone()
         );
@@ -110,7 +110,7 @@ public class TestTask {
                 "Website Redesign",
                 LocalDate.now(),
                 LocalDate.now().plusDays(5),
-                Status.PLANNED,
+                StatusProject.PLANNED,
                 "Migrate and redesign website",
                 Clock.systemDefaultZone()
         );
@@ -136,7 +136,7 @@ public class TestTask {
                 "Website Redesign",
                 LocalDate.now(),
                 LocalDate.now().plusDays(5),
-                Status.PLANNED,
+                StatusProject.PLANNED,
                 "Migrate and redesign website",
                 Clock.systemDefaultZone()
         );
@@ -162,7 +162,7 @@ public class TestTask {
                 "Website Redesign",
                 LocalDate.now(),
                 LocalDate.now().plusDays(5),
-                Status.PLANNED,
+                StatusProject.PLANNED,
                 "Migrate and redesign website",
                 Clock.systemDefaultZone()
         );

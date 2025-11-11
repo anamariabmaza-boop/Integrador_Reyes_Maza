@@ -4,7 +4,6 @@ import exception.ValidationException;
 
 import java.time.Clock;
 import java.time.LocalDate;
-import java.util.Objects;
 
 public class Project {
 
@@ -12,15 +11,15 @@ public class Project {
     private String name;
     private LocalDate startDate;
     private LocalDate endDate;
-    private Status projectStatus;
+    private StatusProject projectStatusProject;
     private String description;
 
-    private Project(Long id, String name, LocalDate startDate, LocalDate endDate, Status projectStatus, String description) {
+    private Project(Long id, String name, LocalDate startDate, LocalDate endDate, StatusProject projectStatusProject, String description) {
         this.id = id;
         this.name = name;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.projectStatus = projectStatus;
+        this.projectStatusProject = projectStatusProject;
         this.description = description;
     }
 
@@ -28,7 +27,7 @@ public class Project {
                                      String name,
                                      LocalDate startDate,
                                      LocalDate endDate,
-                                     Status status,
+                                     StatusProject statusProject,
                                      String description,
                                      Clock clock) {
 
@@ -52,7 +51,7 @@ public class Project {
             throw new ValidationException("The start date can't be in the past.");
         }
 
-        if (status == null) {
+        if (statusProject == null) {
             throw new ValidationException("The project status can't be null.");
         }
 
@@ -60,14 +59,14 @@ public class Project {
             throw new ValidationException("The project description can't be null or empty.");
         }
 
-        return new Project(projectId, name, startDate, endDate, status, description);
+        return new Project(projectId, name, startDate, endDate, statusProject, description);
     }
 
     public Long getProjectId() {return id;}
     public String getName() {return name;}
     public LocalDate getStartDate() {return startDate;}
     public LocalDate getEndDate() {return endDate;}
-    public Status getProjectStatus() {return projectStatus;}
+    public StatusProject getProjectStatus() {return projectStatusProject;}
     public String getDescription() {return description;}
 
 }
