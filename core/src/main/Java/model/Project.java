@@ -14,12 +14,12 @@ public class Project {
     private StatusProject projectStatus;
     private String description;
 
-    private Project(Long id, String name, LocalDate startDate, LocalDate endDate, StatusProject projectStatusProject, String description) {
+    private Project(Long id, String name, LocalDate startDate, LocalDate endDate, StatusProject projectStatus, String description) {
         this.id = id;
         this.name = name;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.projectStatus = projectStatusProject;
+        this.projectStatus = projectStatus;
         this.description = description;
     }
 
