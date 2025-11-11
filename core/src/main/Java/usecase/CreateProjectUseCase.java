@@ -1,12 +1,13 @@
 package usecase;
 
-import exception.DuplicateResourceException;
+import exception.BusinessRuleViolationException;
 import exception.ValidationException;
 import model.Project;
 import output.ProjectRepository;
 import input.CreateProjectInput;
 
 import java.time.Clock;
+import java.time.LocalDate;
 
 public class CreateProjectUseCase implements CreateProjectInput{
     private final ProjectRepository projectRepository;
@@ -20,7 +21,7 @@ public class CreateProjectUseCase implements CreateProjectInput{
     public Project createProject (Project project){
         //validar las reglas del negocio, unicidad, que el nombre sea unico
         if(projectRepository.existsByName(project.getName())){
-            throw new DuplicateResourceException("Project already exists");
+            throw new BusinessRuleViolationException("Project already exists");
         }
         //construir y validar el dominio
         try{

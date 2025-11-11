@@ -2,6 +2,7 @@ package model;
 
 import exception.ValidationException;
 
+import java.time.Clock;
 import java.time.LocalDateTime;
 
 public class Task {
@@ -22,7 +23,13 @@ public class Task {
         this.finishedAt = finishedAt;
         this.createdAt = createdAt;
     }
-    public static Task newTask(Long idTask, Project project, Integer estimateHours, String assignee, StatusTask status, LocalDateTime finishedAt, LocalDateTime createdAt){
+    public static Task newTask(Long idTask,
+                               Project project,
+                               Integer estimateHours,
+                               String assignee,
+                               StatusTask status,
+                               LocalDateTime finishedAt,
+                               LocalDateTime createdAt ) {
         if(idTask == null || idTask <= 0){
             throw new ValidationException("The task id can't be null or less than zero");
         }
@@ -32,9 +39,11 @@ public class Task {
         if(status == null){
             throw new ValidationException("The task status can't be null.");
         }
-        if(finishedAt.isBefore(LocalDateTime.now())){
-            throw new ValidationException("The task finishedAt can't be before the now.");
+        finishedAt = null;
+        if(status == StatusTask.DONE){
+            finishedAt = LocalDateTime.now();
         }
+
         return new Task(idTask, project, estimateHours, assignee, status, finishedAt, createdAt);
     }
     public Long getIdTask() {return idTask;}

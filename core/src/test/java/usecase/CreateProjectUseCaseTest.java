@@ -1,5 +1,6 @@
 package usecase;
 
+import exception.BusinessRuleViolationException;
 import exception.DuplicateResourceException;
 import model.Project;
 import model.Status;
@@ -39,7 +40,7 @@ class CreateProjectUseCaseTest {
 
         CreateProjectUseCase useCase = new CreateProjectUseCase(projectRepository, clock);
 
-        Assertions.assertThrows(DuplicateResourceException.class,
+        Assertions.assertThrows(BusinessRuleViolationException.class,
                 () -> useCase.createProject(project));
     }
 
