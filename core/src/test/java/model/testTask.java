@@ -2,7 +2,7 @@ package model;
 
 import org.junit.jupiter.api.Test;
 
-public class testTask {
+public class TestTask {
 
     //Happy path
     void newTask_atributosValidos(){

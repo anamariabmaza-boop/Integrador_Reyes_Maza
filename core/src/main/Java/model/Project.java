@@ -2,19 +2,20 @@ package model;
 
 import exception.ValidationException;
 
+import java.time.Clock;
 import java.time.LocalDate;
-//Crear proyecto es como importar driver
+
 public class Project {
-    private final Long projectId;
-    private final String name;
-    private final LocalDate startDate;
-    private final LocalDate endDate;
-    private final status projectStatus;
-    private final String description;
 
+    private Long id;
+    private String name;
+    private LocalDate startDate;
+    private LocalDate endDate;
+    private StatusProject projectStatus;
+    private String description;
 
-    private Project(Long projectId, String name, LocalDate startDate, LocalDate endDate, status projectStatus, String description) {
-        this.projectId = projectId;
+    private Project(Long id, String name, LocalDate startDate, LocalDate endDate, StatusProject projectStatus, String description) {
+        this.id = id;
         this.name = name;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -22,29 +23,50 @@ public class Project {
         this.description = description;
     }
 
-    public static Project newProject (Long projectId, String name, LocalDate startDate, LocalDate endDate, status projectStatus, String description){
-        if(projectId == null || projectId <= 0){
-            throw new ValidationException("The project ID can't be null or less than or equal to zero.");
+    public static Project newProject(Long projectId,
+                                     String name,
+                                     LocalDate startDate,
+                                     LocalDate endDate,
+                                     StatusProject statusProject,
+                                     String description,
+                                     Clock clock) {
+
+        if (projectId != null && projectId <= 0) {
+            throw new ValidationException("The project ID can't be less than or equal to zero.");
         }
-        if(name == null || name.isEmpty()){
+
+        if (name == null || name.trim().isEmpty()) {
             throw new ValidationException("The project name can't be null or empty.");
         }
-        if(startDate.isBefore(LocalDate.now())){
-            throw new ValidationException("The project start date can't be null or it cannot be before the current date");
+
+        if (startDate == null || endDate == null) {
+            throw new ValidationException("Start date and end date can't be null.");
         }
-        if(endDate == null || endDate.isBefore(startDate)){
-            throw new ValidationException("The project end date can't be null or it cannot be before the project creation date");
+
+        if (endDate.isBefore(startDate)) {
+            throw new ValidationException("The end date can't be before the start date.");
         }
-        return new Project(projectId, name, startDate, endDate, projectStatus, description);
+
+        if (startDate.isBefore(LocalDate.now(clock))) {
+            throw new ValidationException("The start date can't be in the past.");
+        }
+
+        if (statusProject == null) {
+            throw new ValidationException("The project status can't be null.");
+        }
+
+        if (description == null || description.trim().isEmpty()) {
+            throw new ValidationException("The project description can't be null or empty.");
+        }
+
+        return new Project(projectId, name, startDate, endDate, statusProject, description);
     }
 
-    public Long getProjectId() {
-        return projectId;
-    }
-    public String getName() {return  name;}
+    public Long getProjectId() {return id;}
+    public String getName() {return name;}
     public LocalDate getStartDate() {return startDate;}
     public LocalDate getEndDate() {return endDate;}
-    public status getProjectStatus() {return projectStatus;}
+    public StatusProject getProjectStatus() {return projectStatus;}
     public String getDescription() {return description;}
-}
 
+}

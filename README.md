@@ -127,7 +127,7 @@ Team 5 (Create, Aggregation & Export)
 #### Required use cases:
 - CreateProject
 - CreateTask (under a project) — must verify project exists and is not CLOSED
-- GetProjectSummary (aggregations: totalTasks, doneTasks, totalEstimateHours)
+- GetProjectSummary(aggregations: totalTasks, doneTasks, totalEstimateHours)
 - ExportProjectTasks (return CSV stream, optional)
 - FindTasks by project & status
 #### Endpoints:
