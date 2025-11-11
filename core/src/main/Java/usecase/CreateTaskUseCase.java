@@ -7,7 +7,7 @@ import model.Project;
 import model.Task;
 import model.StatusTask;
 import output.ProjectRepository;
-import output.taskRepository;
+import output.TaskRepository;
 
 import java.time.Clock;
 import java.time.LocalDateTime;
@@ -16,9 +16,9 @@ public class CreateTaskUseCase implements CreateTaskInput {
 
     private final Clock clock;
     private final ProjectRepository projectRepository;
-    private final taskRepository taskRepository;
+    private final TaskRepository taskRepository;
 
-    public CreateTaskUseCase(Clock clock, ProjectRepository projectRepository, taskRepository taskRepository) {
+    public CreateTaskUseCase(Clock clock, ProjectRepository projectRepository, TaskRepository taskRepository) {
         this.clock = clock;
         this.projectRepository = projectRepository;
         this.taskRepository = taskRepository;

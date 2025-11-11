@@ -5,7 +5,6 @@ import exception.ResourceNotFoundException;
 import model.Project;
 import model.StatusProject;
 import model.Task;
-import model.StatusProject;
 import model.StatusTask;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -13,7 +12,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import output.ProjectRepository;
-import output.taskRepository;
+import output.TaskRepository;
 
 import java.time.Clock;
 import java.time.LocalDate;
@@ -29,7 +28,7 @@ public class test_useCaseCreateTask {
     @Mock
     ProjectRepository projectRepository;
     @Mock
-    taskRepository taskRepository;
+    TaskRepository taskRepository;
 
 
     private final Clock clock = Clock.systemDefaultZone();
