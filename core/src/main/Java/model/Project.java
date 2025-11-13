@@ -1,8 +1,11 @@
 package model;
 import exception.ValidationException;
+
 import java.time.Clock;
 import java.time.LocalDate;
+
 public class Project {
+
     private Long id;
     private String name;
     private LocalDate startDate;
