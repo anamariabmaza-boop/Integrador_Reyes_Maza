@@ -36,7 +36,7 @@ public class CreateTaskUseCaseTest {
     void test_useCaseCreateTask_Sucessfull(){
         CreateTaskUseCase useCase= new CreateTaskUseCase(clock,projectRepository,taskRepository);
 
-        Project project= Project.newProject(null,
+        Project project= Project.newProject(91L,
                                             "P",
                                             LocalDate.now(clock),
                                             LocalDate.now(clock).plusDays(3),
