@@ -1,5 +1,6 @@
 package usecase;
 
+import exception.ResourceNotFoundException;
 import exception.ValidationException;
 import model.Project;
 import model.StatusProject;
@@ -61,19 +62,32 @@ public class FindTasksByProjectAndStatusProjectUseCaseTest {
 
     }
     @Test
-    void findTasksByProjectAndStatus_ProjectIdNegative_ThrowsValidationException() {
+    void findTasksByProjectAndStatus_ProjectIdNegative_ThrowsResourceNotFoundException() {
         FindTasksByProjectAndStatusUseCase useCase =
                 new FindTasksByProjectAndStatusUseCase(projectRepository, taskRepository);
+        when(projectRepository.findProjectById(-1L)).thenReturn(null);
 
-        assertThrows(ValidationException.class, () ->
+        assertThrows(ResourceNotFoundException.class, () ->
                 useCase.findTasksByProjectAndStatus(-1L, StatusTask.TODO)
         );
     }
     @Test
     void findTasksByProjectAndStatus_StatusNull_ThrowsValidatoinException() {
-        FindTasksByProjectAndStatusUseCase useCase = new FindTasksByProjectAndStatusUseCase(projectRepository, taskRepository);
+        FindTasksByProjectAndStatusUseCase useCase = new FindTasksByProjectAndStatusUseCase
+                (projectRepository, taskRepository);
+        Project project = Project.newProject(
+                1L,
+                "Website Resign",
+                LocalDate.now(),
+                LocalDate.now().plusDays(10),
+                StatusProject.PLANNED,
+                "Migrate and ...",
+                java.time.Clock.systemDefaultZone()
+        );
+        when(projectRepository.findProjectById(1L)).thenReturn(project);
 
-        assertThrows(ValidationException.class, () ->useCase.findTasksByProjectAndStatus(1L, null));
+        assertThrows(ValidationException.class, () ->
+                useCase.findTasksByProjectAndStatus(1L, null));
 
     }
 

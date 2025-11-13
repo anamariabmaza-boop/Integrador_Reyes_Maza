@@ -23,21 +23,17 @@ public class FindTasksByProjectAndStatusUseCase implements FindTaskByProjectAndS
 
     @Override
     public List<Task> findTasksByProjectAndStatus(Long idProject, StatusTask statusTask) {
-
-        //Validar los parametros
-        if (idProject <= 0) {
-            throw new ValidationException("Project ID cannot be null or less than zero.");
-        }
-        if (statusTask == null) {
-            throw new ValidationException("Task status cannot be null.");
-        }
-
         //Buscar el proyecto por ID
         Project project = projectRepository.findProjectById(idProject);
 
         //si el proyecto no existe, lanzar excepcion
         if (project == null) {
             throw new ResourceNotFoundException("Project not found with ID: " + idProject);
+        }
+
+        //Validar los parametros
+        if (statusTask == null) {
+            throw new ValidationException("Task status cannot be null.");
         }
 
         //buscar todas las tareas asociadas al proyecto
