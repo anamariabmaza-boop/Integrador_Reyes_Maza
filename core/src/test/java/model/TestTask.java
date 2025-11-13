@@ -11,8 +11,8 @@ import java.time.Clock;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-
 public class TestTask {
+
     // Instancia correcta con todos los atributos
     @Test
     void instanceTask_AllAttributes_InstanceCorrect() {
@@ -47,8 +47,7 @@ public class TestTask {
         Assertions.assertNull(task.getFinishedAt());
     }
 
-
-    // Excepcion arrojada por "idTask" menor o igual a cero
+    // Excepción arrojada por "idTask" menor o igual a cero
     @Test
     void instanceTask_idTaskNegative_Exception() {
         Project project = Project.newProject(
@@ -73,6 +72,7 @@ public class TestTask {
                 )
         );
     }
+
     // Excepción arrojada por "estimateHours" nulo o menor o igual a cero
     @ParameterizedTest
     @ValueSource(ints = {0, -10})
@@ -101,7 +101,8 @@ public class TestTask {
                 )
         );
     }
-    //Excepcion lanzada si "status" es null
+
+    // Excepción lanzada si "status" es null
     @Test
     void instanceTask_statusNull_Exception() {
         // Primero creamos un proyecto válido para asociar a la tarea
@@ -115,7 +116,7 @@ public class TestTask {
                 Clock.systemDefaultZone()
         );
 
-       Assertions.assertThrows(ValidationException.class, () ->
+        Assertions.assertThrows(ValidationException.class, () ->
                 Task.newTask(
                         -1L,
                         project,
@@ -127,7 +128,6 @@ public class TestTask {
                 )
         );
     }
-
 
     @Test
     void instanceTask_StatusNotDone_FinishedAtNull() {
@@ -190,6 +190,4 @@ public class TestTask {
                 "finishedAt debe estar dentro del rango temporal en que se creó la tarea"
         );
     }
-
-
 }

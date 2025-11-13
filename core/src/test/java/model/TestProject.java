@@ -12,7 +12,7 @@ import java.time.LocalDate;
 
 public class TestProject {
 
-    //Instancia correcta con todos los atributos
+    // Instancia correcta con todos los atributos
     @Test
     void instanceProject_AllAttributes_InstanceCorrect() {
         Project project = Project.newProject(
@@ -32,7 +32,7 @@ public class TestProject {
         Assertions.assertEquals(LocalDate.now(Clock.systemDefaultZone()), project.getStartDate());
     }
 
-    //Excepcion arrojada por "projectId" menor o igual a cero
+    // Excepción arrojada por "projectId" menor o igual a cero
     @Test
     void instanceProject_ProjectIdNegative_Exception() {
         Assertions.assertThrows(ValidationException.class,
@@ -47,7 +47,7 @@ public class TestProject {
                 ));
     }
 
-    //No se lanza excepcion por "ProjectId" null
+    // No se lanza excepción por "ProjectId" null
     @Test
     void instanceProject_ProjectIdNull_Allowed() {
         Assertions.assertDoesNotThrow(() -> Project.newProject(
@@ -61,7 +61,7 @@ public class TestProject {
         ));
     }
 
-    //Excepcion arrojada por falta de "name"
+    // Excepción arrojada por falta de "name"
     @ParameterizedTest
     @ValueSource(strings = {""})
     @NullSource
@@ -78,7 +78,7 @@ public class TestProject {
                 ));
     }
 
-    //Excepcion arrojada por "startDate" null
+    // Excepción arrojada por "startDate" null
     @Test
     void instanceProject_StartDateNull_Exception() {
         Assertions.assertThrows(ValidationException.class,
@@ -93,7 +93,7 @@ public class TestProject {
                 ));
     }
 
-    //Excepcion arrojada por "startDate" anterior a hoy
+    // Excepción arrojada por "startDate" anterior a hoy
     @Test
     void instanceProject_StartDateBeforeToday_Exception() {
         Assertions.assertThrows(ValidationException.class,
@@ -108,7 +108,7 @@ public class TestProject {
                 ));
     }
 
-    //Excepcion arrojada por "endDate" null
+    // Excepción arrojada por "endDate" null
     @Test
     void instanceProject_EndDateNull_Exception() {
         Assertions.assertThrows(ValidationException.class,
@@ -123,7 +123,7 @@ public class TestProject {
                 ));
     }
 
-    //Excepcion arrojada por "endDate" anterior a startDate
+    // Excepción arrojada por "endDate" anterior a startDate
     @Test
     void instanceProject_EndDateBeforeStartDate_Exception() {
         Assertions.assertThrows(ValidationException.class,
@@ -138,7 +138,7 @@ public class TestProject {
                 ));
     }
 
-    //Excepcion arrojada por "description" vacia o nula
+    // Excepción arrojada por "description" vacía o nula
     @ParameterizedTest
     @ValueSource(strings = {""})
     @NullSource
@@ -155,6 +155,5 @@ public class TestProject {
                 ));
     }
 
-    //Solucionar test para clock
-
+    // TODO: Solucionar test para clock
 }

@@ -1,5 +1,5 @@
 package model;
 
 public enum StatusProject {
-    PLANNED, ACTIVE, CLOSED
+    PLANNED, ACTIVE, CLOSED;
 }

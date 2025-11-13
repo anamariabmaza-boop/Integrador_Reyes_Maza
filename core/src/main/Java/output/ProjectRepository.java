@@ -3,7 +3,8 @@ package output;
 import model.Project;
 
 public interface ProjectRepository {
-Project findProjectById(Long id);
-boolean existsByName (String name);
-Project save (Project project);
+    boolean existsByName(String name);
+    Project save(Project validProject);
+
+    Project findProjectById(Long idProject);
 }

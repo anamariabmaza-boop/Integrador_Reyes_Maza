@@ -6,6 +6,7 @@ import java.time.Clock;
 import java.time.LocalDateTime;
 
 public class Task {
+
     private final Long idTask;
     private final Project project;
     private final Integer estimateHours;
@@ -14,7 +15,13 @@ public class Task {
     private final LocalDateTime finishedAt;
     private final LocalDateTime createdAt;
 
-    private Task(Long idTask, Project project, Integer estimateHours, String assignee, StatusTask status, LocalDateTime finishedAt, LocalDateTime createdAt) {
+    private Task(Long idTask,
+                 Project project,
+                 Integer estimateHours,
+                 String assignee,
+                 StatusTask status,
+                 LocalDateTime finishedAt,
+                 LocalDateTime createdAt) {
         this.idTask = idTask;
         this.project = project;
         this.estimateHours = estimateHours;
@@ -23,34 +30,61 @@ public class Task {
         this.finishedAt = finishedAt;
         this.createdAt = createdAt;
     }
+
     public static Task newTask(Long idTask,
                                Project project,
                                Integer estimateHours,
                                String assignee,
                                StatusTask status,
                                LocalDateTime finishedAt,
-                               LocalDateTime createdAt ) {
-        if(idTask == null || idTask <= 0){
+                               LocalDateTime createdAt) {
+
+        if (idTask == null || idTask <= 0) {
             throw new ValidationException("The task id can't be null or less than zero");
         }
-        if(estimateHours == null || estimateHours <= 0){
+
+        if (estimateHours == null || estimateHours <= 0) {
             throw new ValidationException("The estimate hours can't be null or less than zero");
         }
-        if(status == null){
+
+        if (status == null) {
             throw new ValidationException("The task status can't be null.");
         }
+
+        // finishedAt debe ser null excepto cuando la tarea está completada
         finishedAt = null;
-        if(status == StatusTask.DONE){
+        if (status == StatusTask.DONE) {
             finishedAt = LocalDateTime.now();
         }
 
         return new Task(idTask, project, estimateHours, assignee, status, finishedAt, createdAt);
     }
-    public Long getIdTask() {return idTask;}
-    public Project getProject() {return project;}
-    public Integer getEstimateHours() {return estimateHours;}
-    public String getAssignee() {return assignee;}
-    public StatusTask getStatus() {return status;}
-    public LocalDateTime getFinishedAt() {return finishedAt;}
-    public LocalDateTime getCreatedAt() {return createdAt;}
+
+    public Long getIdTask() {
+        return idTask;
+    }
+
+    public Project getProject() {
+        return project;
+    }
+
+    public Integer getEstimateHours() {
+        return estimateHours;
+    }
+
+    public String getAssignee() {
+        return assignee;
+    }
+
+    public StatusTask getStatus() {
+        return status;
+    }
+
+    public LocalDateTime getFinishedAt() {
+        return finishedAt;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
 }

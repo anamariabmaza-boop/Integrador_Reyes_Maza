@@ -17,7 +17,6 @@ public class CreateProjectUseCase implements CreateProjectInput{
         this.projectRepository = projectRepository;
         this.clock = clock;
     }
-
     public Project createProject (Project project){
         //validar las reglas del negocio, unicidad, que el nombre sea unico
         if(projectRepository.existsByName(project.getName())){
@@ -27,7 +26,8 @@ public class CreateProjectUseCase implements CreateProjectInput{
         try{
             //Se construye el objeto project y se aplican las validaciones de fecha y null
             Project validProject = Project.newProject(
-                    null, project.getName(),
+                    null,
+                    project.getName(),
                     project.getStartDate(),
                     project.getEndDate(),
                     project.getProjectStatus(),
@@ -38,6 +38,6 @@ public class CreateProjectUseCase implements CreateProjectInput{
         } catch (ValidationException e) {
             throw e;
         }
-    }
+        }
 
-}
+    }
