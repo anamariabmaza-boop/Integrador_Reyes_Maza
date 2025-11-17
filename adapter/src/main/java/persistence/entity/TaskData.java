@@ -1,7 +1,7 @@
 package persistence.entity;
 
 import jakarta.persistence.*;
-import model.Project;
+
 import model.StatusTask;
 
 import java.time.LocalDateTime;
@@ -13,16 +13,18 @@ public class TaskData {
     private Long idTask;
 
     @ManyToOne
+    @JoinColumn(name = "Project_id")
     private ProjectData project;
-    @Column
+    @Column(name = "Estimate_Hours")
     private Integer estimateHours;
-    @Column
+    @Column(name = "Assignee")
     private String assignee;
-    @Column
+    @Enumerated(EnumType.STRING)
+    @Column(name = "Status")
     private StatusTask status;
-    @Column
+    @Column(name = "Finished_At")
     private LocalDateTime finishedAt;
-    @Column
+    @Column(name = "Create_At")
     private LocalDateTime createdAt;
 
     public TaskData() {
