@@ -1,7 +1,37 @@
 package persistence.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import output.ProjectRepository;
+import persistence.crud.ProjectRepositoryCrud;
 import persistence.entity.ProjectData;
+import persistence.until.ProjectMapper;
+import model.Project;
+import org.springframework.stereotype.Repository;
 
-public interface ProjectRepositoryImpl extends JpaRepository<ProjectData, Long> {
+@Repository
+public class ProjectRepositoryImpl implements ProjectRepository {
+
+    private final ProjectRepositoryCrud crud;
+
+    public ProjectRepositoryImpl(ProjectRepositoryCrud crud) {
+        this.crud = crud;
+    }
+
+    @Override
+    public boolean existsByName(String name) {
+        return crud.findByName(name).iterator().hasNext();
+    }
+
+    @Override
+    public Project save(Project validProject) {
+        ProjectData data = ProjectMapper.toData(validProject);
+        ProjectData saved = crud.save(data);
+        return ProjectMapper.toDomain(saved);
+    }
+
+    @Override
+    public Project findProjectById(Long idProject) {
+        return crud.findById(idProject)
+                .map(ProjectMapper::toDomain)
+                .orElse(null);
+    }
 }
