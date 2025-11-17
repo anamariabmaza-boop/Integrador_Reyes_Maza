@@ -1,7 +1,7 @@
-package persistence.until;
+package com.undec.persistence.until;
 
 import model.Project;
-import persistence.entity.ProjectData;
+import com.undec.persistence.entity.ProjectData;
 
 import java.time.Clock;
 

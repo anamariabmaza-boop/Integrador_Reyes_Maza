@@ -1,11 +1,7 @@
-package persistence.until;
+package com.undec.persistence.until;
 
-import model.Project;
-import model.StatusTask;
 import model.Task;
-import persistence.entity.TaskData;
-
-import java.time.LocalDateTime;
+import com.undec.persistence.entity.TaskData;
 
 public class TaskMapper {
 

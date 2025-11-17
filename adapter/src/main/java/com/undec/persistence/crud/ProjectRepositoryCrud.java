@@ -1,9 +1,9 @@
-package persistence.crud;
+package com.undec.persistence.crud;
 
 import model.StatusProject;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-import persistence.entity.ProjectData;
+import com.undec.persistence.entity.ProjectData;
 
 @Repository
 public interface ProjectRepositoryCrud extends CrudRepository<ProjectData, Long> {

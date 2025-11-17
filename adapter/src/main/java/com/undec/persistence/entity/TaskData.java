@@ -1,4 +1,4 @@
-package persistence.entity;
+package com.undec.persistence.entity;
 
 import jakarta.persistence.*;
 
@@ -15,6 +15,7 @@ public class TaskData {
     @ManyToOne
     @JoinColumn(name = "Project_id")
     private ProjectData project;
+
     @Column(name = "Estimate_Hours")
     private Integer estimateHours;
     @Column(name = "Assignee")

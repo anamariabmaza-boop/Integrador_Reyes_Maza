@@ -1,4 +1,4 @@
-package controller.dto;
+package com.undec.controller.dto;
 
 public class ProjectResponse {
 }
