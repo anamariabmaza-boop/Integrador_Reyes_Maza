@@ -30,7 +30,7 @@ public class GetProjectSummaryUseCase implements GetProjectSummaryInput {
             throw new ResourceNotFoundException("Project not exist");
         }
 
-        List<Task> allTaskProject=taskRepository.findByProject(project);
+        List<Task> allTaskProject=taskRepository.findByProject(project.getProjectId());
 
         if(allTaskProject.isEmpty()){
             throw new ResourceNotFoundException("List of tasks is Empty");

@@ -48,7 +48,7 @@ public class FindTasksByProjectAndStatusProjectUseCaseTest {
                 StatusTask.TODO, null, LocalDateTime.now());
 
         when(projectRepository.findProjectById(1L)).thenReturn(project);
-        when(taskRepository.findByProject(project)).thenReturn(List.of(task1, task2, task3));
+        when(taskRepository.findByProject(project.getProjectId())).thenReturn(List.of(task1, task2, task3));
 
         FindTasksByProjectAndStatusUseCase useCase =
                 new FindTasksByProjectAndStatusUseCase(projectRepository, taskRepository);

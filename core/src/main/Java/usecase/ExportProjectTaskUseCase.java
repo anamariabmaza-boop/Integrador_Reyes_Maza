@@ -26,7 +26,7 @@ public class ExportProjectTaskUseCase implements ExportProjectTaskInput {
         if(project==null){
             throw new ResourceNotFoundException("Project not found");
         }
-        List<Task> projectTask=taskRepository.findByProject(project);
+        List<Task> projectTask=taskRepository.findByProject(project.getProjectId());
 
         if(projectTask.isEmpty()){
             throw new ResourceNotFoundException("Task is empty");
