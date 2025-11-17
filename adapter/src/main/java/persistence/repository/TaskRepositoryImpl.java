@@ -2,6 +2,7 @@ package persistence.repository;
 
 import model.Project;
 import model.Task;
+import org.springframework.stereotype.Repository;
 import output.TaskRepository;
 import persistence.crud.TaskRepositoryCrud;
 import persistence.entity.TaskData;
@@ -20,6 +21,8 @@ import java.util.stream.Collectors;
  * Porque extends JpaRepository le dice a Spring:
  *  "Generame el CRUD completo para ProjectData con ID tipo Long".
  */
+
+@Repository
 public class TaskRepositoryImpl implements TaskRepository {
 
     private final TaskRepositoryCrud  taskRepositoryCrud;
