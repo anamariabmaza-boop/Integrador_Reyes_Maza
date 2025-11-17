@@ -1,7 +1,16 @@
 package persistence.repository;
 
+import model.Project;
+import model.Task;
+import output.TaskRepository;
+import persistence.crud.TaskRepositoryCrud;
 import persistence.entity.TaskData;
 import org.springframework.data.jpa.repository.JpaRepository;
+import persistence.until.TaskMapper;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
 /**
  * Esta interfaz ES mi repositorio.
  * No tiene código adentro.
@@ -11,5 +20,29 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * Porque extends JpaRepository le dice a Spring:
  *  "Generame el CRUD completo para ProjectData con ID tipo Long".
  */
-public interface TaskRepositoryImpl extends JpaRepository<TaskData, Long> {
+public class TaskRepositoryImpl implements TaskRepository {
+
+    private final TaskRepositoryCrud  taskRepositoryCrud;
+
+    public TaskRepositoryImpl(TaskRepositoryCrud taskRepositoryCrud) {
+        this.taskRepositoryCrud = taskRepositoryCrud;
+    }
+
+
+    @Override
+    public List<Task> findByProject(Long projectId) {
+
+        return taskRepositoryCrud.findByProjectwithID(projectId).
+                                    stream().
+                                    map(TaskMapper::mapToTaskDomain).
+                                    collect(Collectors.toList());
+    }
+
+    @Override
+    public Task saveTask(Task task) {
+        TaskData data = TaskMapper.mapToTaskData(task);
+        TaskData saved = taskRepositoryCrud.save(data);
+        return TaskMapper.mapToTaskDomain(saved);
+
+    }
 }

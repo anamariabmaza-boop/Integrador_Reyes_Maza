@@ -78,7 +78,7 @@ public class GetProjectSummaryUseCaseTest {
 
         when(projectRepository.findProjectById(17L)).thenReturn(project);
 
-        when(taskRepository.findByProject(project)).thenReturn(taskList);
+        when(taskRepository.findByProject(project.getProjectId())).thenReturn(taskList);
 
         ProjectSummaryResponseModel projectSummary= useCase.getProjectSummary(project.getProjectId());
 
@@ -119,7 +119,7 @@ public class GetProjectSummaryUseCaseTest {
         List<Task> taskList=new ArrayList<>();
         when(projectRepository.findProjectById(17L)).thenReturn(project);
 
-        when(taskRepository.findByProject(project)).thenReturn(taskList);
+        when(taskRepository.findByProject(project.getProjectId())).thenReturn(taskList);
 
         Assertions.assertThrows(ResourceNotFoundException.class,()->useCase.getProjectSummary(project.getProjectId()));
     }

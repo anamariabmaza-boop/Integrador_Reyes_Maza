@@ -7,8 +7,9 @@ import java.time.Clock;
 
 public class ProjectMapper {
 
-    // Convierte Project (dominio) → ProjectData (JPA)
+
     public static ProjectData toData(Project project) {
+
         if (project == null) return null;
 
         ProjectData data = new ProjectData(
@@ -18,17 +19,12 @@ public class ProjectMapper {
                 project.getProjectStatus(),
                 project.getDescription()
         );
-       // IMPORTANTE: mantener el ID si existe
+
+
         if (project.getProjectId() != null) {
             data.setId(project.getProjectId());
         }
-/* Esta validacion vendria a ser para que no cree un nuevo proyecto cada vez
-       y que conserve el ID si ya existe
-       if (project.getProjectId() != null) {
-            ProjectData.setId(project.getProjectId());
-        }
-        Debo poner o no un setId??
-        */
+
         return data;
     }
 

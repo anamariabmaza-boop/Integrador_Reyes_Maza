@@ -83,7 +83,7 @@ public class ExportProjectTaskTest {
 
         when(projectRepository.findProjectById(17L)).thenReturn(project);
 
-        when(taskRepository.findByProject(project)).thenReturn(taskList);
+        when(taskRepository.findByProject(project.getProjectId())).thenReturn(taskList);
 
         List<String> ListCSV= useCase.exportProjectTask(project.getProjectId());
         Assertions.assertEquals("Project: ProjectChristmas", ListCSV.get(0));
@@ -118,7 +118,7 @@ public class ExportProjectTaskTest {
                 clock
         );
         when(projectRepository.findProjectById(91L)).thenReturn(project);
-        when(taskRepository.findByProject(project)).thenReturn(taskList);
+        when(taskRepository.findByProject(project.getProjectId())).thenReturn(taskList);
 
         Assertions.assertThrows(ResourceNotFoundException.class,()->useCase.exportProjectTask(91L));
     }

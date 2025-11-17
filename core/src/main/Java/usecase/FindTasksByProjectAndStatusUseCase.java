@@ -37,7 +37,7 @@ public class FindTasksByProjectAndStatusUseCase implements FindTaskByProjectAndS
         }
 
         //buscar todas las tareas asociadas al proyecto
-        List<Task> allTasks = taskRepository.findByProject(project);
+        List<Task> allTasks = taskRepository.findByProject(project.getProjectId());
 
         //si no hay tareas, devolvemos una lista vacía (en vez de error)
         if (allTasks == null || allTasks.isEmpty()) {
