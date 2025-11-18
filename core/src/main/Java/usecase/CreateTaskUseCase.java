@@ -26,7 +26,7 @@ public class CreateTaskUseCase implements CreateTaskInput {
     }
 
     @Override
-    public Task createTask(Long idTask, Long idProject, Integer estimateHours, String assign, StatusTask status, LocalDateTime finishAt, LocalDateTime createAt) {
+    public Task createTask(Long idTask, Long idProject, Integer estimateHours, String assign, StatusTask status, LocalDateTime finishAt, LocalDateTime createAt, String title) {
 
         Project project = projectRepository.findProjectById(idProject);
         if(project == null){
@@ -36,7 +36,7 @@ public class CreateTaskUseCase implements CreateTaskInput {
             throw new BusinessRuleViolationException("Project is already closed");
         }
 
-        Task task= Task.newTask(idTask,project,estimateHours,assign,status,finishAt,createAt);
+        Task task= Task.newTask(idTask,project,estimateHours,assign,status,finishAt,createAt, title);
 
         Task savedTask=taskRepository.saveTask(task);
 

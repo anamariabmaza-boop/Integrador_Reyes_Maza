@@ -41,11 +41,11 @@ public class FindTasksByProjectAndStatusProjectUseCaseTest {
         );
 
         Task task1 = Task.newTask(1L, project, 8, "alice",
-                StatusTask.TODO, null, LocalDateTime.now());
+                StatusTask.TODO, null, LocalDateTime.now(), "title");
         Task task2 = Task.newTask(2L, project, 4, "ana",
-                StatusTask.DONE, null, LocalDateTime.now());
+                StatusTask.DONE, null, LocalDateTime.now(), "title");
         Task task3 = Task.newTask(3L, project, 6, "romina",
-                StatusTask.TODO, null, LocalDateTime.now());
+                StatusTask.TODO, null, LocalDateTime.now(), "title");
 
         when(projectRepository.findProjectById(1L)).thenReturn(project);
         when(taskRepository.findByProject(project.getProjectId())).thenReturn(List.of(task1, task2, task3));

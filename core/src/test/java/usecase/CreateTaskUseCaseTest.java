@@ -46,10 +46,10 @@ public class CreateTaskUseCaseTest {
         when(projectRepository.findProjectById(91L)).thenReturn(project);
 
         when(taskRepository.saveTask(any(Task.class))).thenReturn(Task.newTask(12L,project,122,
-                "juan", StatusTask.IN_PROGRESS, LocalDateTime.now(clock),LocalDateTime.now(clock).plusDays(3)));
+                "juan", StatusTask.IN_PROGRESS, LocalDateTime.now(clock),LocalDateTime.now(clock).plusDays(3), "title"));
 
         Task task= useCase.createTask(12L,91L,122,
-                "juan", StatusTask.IN_PROGRESS, LocalDateTime.now(clock),LocalDateTime.now(clock));
+                "juan", StatusTask.IN_PROGRESS, LocalDateTime.now(clock),LocalDateTime.now(clock), "title");
 
         Assertions.assertNotNull(task);
     }
@@ -63,7 +63,7 @@ public class CreateTaskUseCaseTest {
         when(projectRepository.findProjectById(91L)).thenReturn(null);
 
         Assertions.assertThrows(ResourceNotFoundException.class,()->useCase.createTask(12L,91L,122,
-                "juan", StatusTask.IN_PROGRESS, LocalDateTime.now(clock),LocalDateTime.now(clock)));
+                "juan", StatusTask.IN_PROGRESS, LocalDateTime.now(clock),LocalDateTime.now(clock), "title"));
     }
     @Test
     void useCase_UNsucessfull_ProyectClose(){
@@ -76,7 +76,7 @@ public class CreateTaskUseCaseTest {
 
 
         Assertions.assertThrows(BusinessRuleViolationException.class,()->useCase.createTask(12L,91L,122,
-                "juan", StatusTask.IN_PROGRESS, LocalDateTime.now(clock),LocalDateTime.now(clock)));
+                "juan", StatusTask.IN_PROGRESS, LocalDateTime.now(clock),LocalDateTime.now(clock), "title"));
     }
 
 }
