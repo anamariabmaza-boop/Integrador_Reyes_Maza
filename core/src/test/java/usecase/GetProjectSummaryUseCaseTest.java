@@ -51,8 +51,8 @@ public class GetProjectSummaryUseCaseTest {
                 "mantecol",
                 StatusTask.DONE,
                 LocalDateTime.now(),
-                LocalDateTime.now()
-        );
+                LocalDateTime.now(),
+                "title");
         Task task2 = Task.newTask(
                 2L,
                 project,
@@ -60,8 +60,8 @@ public class GetProjectSummaryUseCaseTest {
                 "budin",
                 StatusTask.DONE,
                 LocalDateTime.now(),
-                LocalDateTime.now()
-        );
+                LocalDateTime.now(),
+                "title");
         Task task3 = Task.newTask(
                 3L,
                 project,
@@ -69,8 +69,8 @@ public class GetProjectSummaryUseCaseTest {
                 "panDulce",
                 StatusTask.TODO,
                 LocalDateTime.now(),
-                LocalDateTime.now()
-        );
+                LocalDateTime.now(),
+                "title");
 
         taskList.add(task1);
         taskList.add(task2);

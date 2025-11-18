@@ -72,5 +72,4 @@ public class ControllerProject {
         List<String> exported = exportProjectTaskInput.exportProjectTask(projectId);
         return ResponseEntity.ok(exported);
     }
-
 }

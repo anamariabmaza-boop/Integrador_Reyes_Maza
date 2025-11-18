@@ -2,7 +2,6 @@ package model;
 
 import exception.ValidationException;
 
-import java.time.Clock;
 import java.time.LocalDateTime;
 
 public class Task {
@@ -14,6 +13,7 @@ public class Task {
     private final StatusTask status;
     private final LocalDateTime finishedAt;
     private final LocalDateTime createdAt;
+    private final String title;
 
     private Task(Long idTask,
                  Project project,
@@ -21,7 +21,7 @@ public class Task {
                  String assignee,
                  StatusTask status,
                  LocalDateTime finishedAt,
-                 LocalDateTime createdAt) {
+                 LocalDateTime createdAt, String title) {
         this.idTask = idTask;
         this.project = project;
         this.estimateHours = estimateHours;
@@ -29,6 +29,7 @@ public class Task {
         this.status = status;
         this.finishedAt = finishedAt;
         this.createdAt = createdAt;
+        this.title = title;
     }
 
     public static Task newTask(Long idTask,
@@ -37,7 +38,8 @@ public class Task {
                                String assignee,
                                StatusTask status,
                                LocalDateTime finishedAt,
-                               LocalDateTime createdAt) {
+                               LocalDateTime createdAt,
+                               String title) {
 
         if (idTask == null || idTask <= 0) {
             throw new ValidationException("The task id can't be null or less than zero");
@@ -57,7 +59,7 @@ public class Task {
             finishedAt = LocalDateTime.now();
         }
 
-        return new Task(idTask, project, estimateHours, assignee, status, finishedAt, createdAt);
+        return new Task(idTask, project, estimateHours, assignee, status, finishedAt, createdAt, title);
     }
 
     public Long getIdTask() {
@@ -87,4 +89,8 @@ public class Task {
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
+    public String getTitle() {
+        return title;
+    }
+
 }

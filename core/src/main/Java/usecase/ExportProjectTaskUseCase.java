@@ -38,6 +38,7 @@ public class ExportProjectTaskUseCase implements ExportProjectTaskInput {
                 s.getIdTask().toString(),
                 s.getAssignee(),
                 s.getStatus().name(),
+                s.getTitle(),
                 String.valueOf(s.getEstimateHours())
                 )).toList();
 
