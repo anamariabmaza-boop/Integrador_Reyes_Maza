@@ -17,27 +17,30 @@ public class GlobalConfig {
         return  Clock.systemDefaultZone();
     }
 
+  
+
+
     @Bean
     public CreateProjectInput createProjectUseCase(ProjectRepository projectRepository, Clock clock) {
         return new CreateProjectUseCase(projectRepository, clock);
     }
 
-   @Bean
-   public CreateTaskInput createTaskUseCase(Clock clock, ProjectRepository projectRepository , TaskRepository taskRepository) {
-       return new CreateTaskUseCase(clock,projectRepository,taskRepository);
-   }
-   @Bean
+    @Bean
+    public CreateTaskInput createTaskUseCase(Clock clock, ProjectRepository projectRepository , TaskRepository taskRepository) {
+        return new CreateTaskUseCase(clock,projectRepository,taskRepository);
+    }
+    @Bean
     public ExportProjectTaskInput exportProjectTaskUseCase(ProjectRepository projectRepository, TaskRepository taskRepository) {
         return new ExportProjectTaskUseCase(projectRepository,taskRepository);
-   }
-   @Bean
+    }
+    @Bean
     public FindTaskByProjectAndStatusInput findTasksByProjectAndStatusUseCase(ProjectRepository projectRepository, TaskRepository taskRepository) {
         return new FindTasksByProjectAndStatusUseCase(projectRepository,taskRepository);
-   }
-   @Bean
+    }
+    @Bean
     public GetProjectSummaryInput getProjectSummaryUseCase(ProjectRepository projectRepository, TaskRepository taskRepository){
         return new GetProjectSummaryUseCase(projectRepository,taskRepository);
-   }
+    }
 
 
 }

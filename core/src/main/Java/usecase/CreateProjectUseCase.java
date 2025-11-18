@@ -3,6 +3,7 @@ package usecase;
 import exception.BusinessRuleViolationException;
 import exception.ValidationException;
 import model.Project;
+import org.springframework.context.annotation.Bean;
 import output.ProjectRepository;
 import input.CreateProjectInput;
 
