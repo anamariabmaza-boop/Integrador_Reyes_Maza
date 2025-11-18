@@ -9,6 +9,7 @@ public class Task {
 
     private final Long idTask;
     private final Project project;
+    //Agregar variable title
     private final Integer estimateHours;
     private final String assignee;
     private final StatusTask status;
