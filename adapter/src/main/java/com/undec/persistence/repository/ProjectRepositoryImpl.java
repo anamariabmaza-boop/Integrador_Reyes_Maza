@@ -1,9 +1,9 @@
-package persistence.repository;
+package com.undec.persistence.repository;
 
 import output.ProjectRepository;
-import persistence.crud.ProjectRepositoryCrud;
-import persistence.entity.ProjectData;
-import persistence.until.ProjectMapper;
+import com.undec.persistence.crud.ProjectRepositoryCrud;
+import com.undec.persistence.entity.ProjectData;
+import com.undec.persistence.until.ProjectMapper;
 import model.Project;
 import org.springframework.stereotype.Repository;
 

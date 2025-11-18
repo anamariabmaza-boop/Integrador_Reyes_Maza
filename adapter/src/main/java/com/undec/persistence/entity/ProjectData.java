@@ -1,4 +1,4 @@
-package persistence.entity;
+package com.undec.persistence.entity;
 
 import jakarta.persistence.*;
 import model.StatusProject;
@@ -18,9 +18,6 @@ public class ProjectData {
     @GeneratedValue(strategy = GenerationType.IDENTITY) //configura cómo se genera el ID.
     // Identity = autoincrement en muchas BDs.
     private Long id;
-
-    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<TaskData> tasks = new ArrayList<>();
 
     @Column(nullable = false) //la columna no puede ser null en la BD
     private String name;
@@ -65,7 +62,6 @@ public class ProjectData {
     public LocalDate getEndDate() {return endDate;}
     public StatusProject getProjectStatus() {return projectStatus;}
     public String getDescription() {return description;}
-    public List<TaskData> getTasks() { return tasks; }
     public void setId(Long id) {this.id = id;}
 
 }
