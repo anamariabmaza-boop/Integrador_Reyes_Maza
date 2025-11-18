@@ -56,8 +56,8 @@ public class ExportProjectTaskTest {
                 "mantecol",
                 StatusTask.DONE,
                 LocalDateTime.of(2025, 11, 9, 10, 0),
-                LocalDateTime.of(2025, 11, 10, 10, 0)
-        );
+                LocalDateTime.of(2025, 11, 10, 10, 0),
+                "title");
         Task task2 = Task.newTask(
                 2L,
                 project,
@@ -65,8 +65,8 @@ public class ExportProjectTaskTest {
                 "budin",
                 StatusTask.DONE,
                 LocalDateTime.of(2025, 11, 10, 11, 0),
-                LocalDateTime.of(2025, 11, 9, 11, 0)
-        );
+                LocalDateTime.of(2025, 11, 9, 11, 0),
+                "title");
         Task task3 = Task.newTask(
                 3L,
                 project,
@@ -74,8 +74,8 @@ public class ExportProjectTaskTest {
                 "panDulce",
                 StatusTask.TODO,
                 LocalDateTime.of(2025, 11, 10, 12, 0),
-                LocalDateTime.of(2025, 11, 9, 12, 0)
-        );
+                LocalDateTime.of(2025, 11, 9, 12, 0),
+                "title");
 
         taskList.add(task1);
         taskList.add(task2);
@@ -89,9 +89,9 @@ public class ExportProjectTaskTest {
         Assertions.assertEquals("Project: ProjectChristmas", ListCSV.get(0));
         Assertions.assertEquals("idTask,assignee,status,estimateHours", ListCSV.get(1));
 
-        Assertions.assertEquals("1,mantecol,DONE,8", ListCSV.get(2));
-        Assertions.assertEquals("2,budin,DONE,8", ListCSV.get(3));
-        Assertions.assertEquals("3,panDulce,TODO,8", ListCSV.get(4));
+        Assertions.assertEquals("1,mantecol,DONE,title,8", ListCSV.get(2));
+        Assertions.assertEquals("2,budin,DONE,title,8", ListCSV.get(3));
+        Assertions.assertEquals("3,panDulce,TODO,title,8", ListCSV.get(4));
 
         Assertions.assertNotNull(ListCSV);
 

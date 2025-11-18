@@ -35,7 +35,8 @@ public class TestTask {
                 "alice",
                 StatusTask.TODO,
                 now,
-                now
+                now,
+                "title"
         );
 
         Assertions.assertEquals(12L, task.getIdTask());
@@ -68,8 +69,8 @@ public class TestTask {
                         "alice",
                         StatusTask.TODO,
                         LocalDateTime.now(),
-                        LocalDateTime.now()
-                )
+                        LocalDateTime.now(),
+                        "title")
         );
     }
 
@@ -97,8 +98,8 @@ public class TestTask {
                         "alice",
                         StatusTask.TODO,
                         LocalDateTime.now(),
-                        LocalDateTime.now()
-                )
+                        LocalDateTime.now(),
+                        "title")
         );
     }
 
@@ -124,8 +125,8 @@ public class TestTask {
                         "alice",
                         null,
                         LocalDateTime.now(),
-                        LocalDateTime.now()
-                )
+                        LocalDateTime.now(),
+                        "title")
         );
     }
 
@@ -148,8 +149,8 @@ public class TestTask {
                 "bob",
                 StatusTask.TODO,  // NO es DONE
                 LocalDateTime.now(),
-                LocalDateTime.now()
-        );
+                LocalDateTime.now(),
+                "title");
 
         Assertions.assertNull(task.getFinishedAt(),
                 "finishedAt debe ser null cuando el estado no es DONE");
@@ -176,8 +177,8 @@ public class TestTask {
                 "alice",
                 StatusTask.DONE,  // Es DONE
                 null,
-                LocalDateTime.now()
-        );
+                LocalDateTime.now(),
+                "title");
 
         LocalDateTime afterCreation = LocalDateTime.now();
 

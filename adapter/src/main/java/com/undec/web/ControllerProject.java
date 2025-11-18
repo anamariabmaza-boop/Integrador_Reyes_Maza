@@ -41,12 +41,19 @@ public class ControllerProject {
     }
 
     //create task
-    /*@PostMapping
-    public ResponseEntity<ProjectResponse> createTask(@RequestBody TaskRequest request) {
-        var task = createTaskInput.createTask(request.toDomainTask());
+    @PostMapping("/{projectId}/task")
+    public ResponseEntity<TaskResponse> createTask(@RequestBody TaskRequest request,@PathVariable Long projectId) {
+        var requestTask=request.toDomainTask();
+        var task = createTaskInput.createTask(requestTask.getIdTask(),
+                                                projectId,
+                                            requestTask.getEstimateHours()
+                                            ,requestTask.getAssignee()
+                                            ,requestTask.getStatus(),
+                                            requestTask.getFinishedAt(),
+                                            requestTask.getCreatedAt(),requestTask.getTitle());
             return  ResponseEntity.ok(TaskResponse.fromDomainTask(task));
         }
-    }*/
+
 
     //get project summary
     @GetMapping("/{projectId}/summary")
@@ -57,12 +64,12 @@ public class ControllerProject {
     }
 
     //find task by project and status
-    /*@GetMapping("/{projectId}/tasks/export")
-    public ResponseEntity<List<Task>> findTaskByStatus (@PathVariable Long projectId, @RequestParam StatusTask status) {
+    @GetMapping("/{projectId}/tasks")
+    public ResponseEntity<List<TaskResponse>> findTaskByStatus (@PathVariable Long projectId, @RequestParam StatusTask status) {
         List<Task> tasks = findTaskByProjectAndStatusInput.findTasksByProjectAndStatus(projectId, status);
-        List<Task> response = tasks.stream().map(TaskResponse::fromDomainTasks).toList();
+        List<TaskResponse> response = tasks.stream().map(TaskResponse::fromDomainTask).toList();
         return ResponseEntity.ok(response);
-    }*/
+    }
 
 
     //exportProjectTask
@@ -72,5 +79,4 @@ public class ControllerProject {
         List<String> exported = exportProjectTaskInput.exportProjectTask(projectId);
         return ResponseEntity.ok(exported);
     }
-
 }

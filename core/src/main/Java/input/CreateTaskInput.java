@@ -12,5 +12,6 @@ public interface CreateTaskInput {
                     String assign,
                     StatusTask status,
                     LocalDateTime finishAt,
-                    LocalDateTime createAt);
+                    LocalDateTime createAt,
+                    String title);
 }

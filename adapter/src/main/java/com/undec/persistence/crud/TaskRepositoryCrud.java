@@ -6,6 +6,6 @@ import com.undec.persistence.entity.TaskData;
 import java.util.List;
 
 public interface TaskRepositoryCrud extends CrudRepository<TaskData,Long> {
-    List<TaskData> findByProjectwithID(long projectId);
+    List<TaskData> findByProject_Id(long projectId);
 
 }

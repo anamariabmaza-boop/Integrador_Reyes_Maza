@@ -12,7 +12,8 @@ public class TaskMapper {
                     task.getAssignee(),
                     task.getStatus(),
                     task.getFinishedAt(),
-                    task.getCreatedAt());
+                    task.getCreatedAt(),
+                    task.getTitle());
 
         if (task.getIdTask() != null) {
             taskData.setIdTask(task.getIdTask());
@@ -30,7 +31,7 @@ public class TaskMapper {
                         task.getAssignee(),
                         task.getStatus(),
                         task.getFinishedAt(),
-                        task.getCreatedAt());
+                        task.getCreatedAt(), task.getTitle());
 
     }
 

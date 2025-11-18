@@ -27,11 +27,13 @@ public class TaskData {
     private LocalDateTime finishedAt;
     @Column(name = "Create_At")
     private LocalDateTime createdAt;
+    @Column(name = "title")
+    private String title;
 
     public TaskData() {
     }
 
-    public TaskData(ProjectData project, Integer estimateHours, String assignee, StatusTask status, LocalDateTime finishedAt, LocalDateTime createdAt) {
+    public TaskData(ProjectData project, Integer estimateHours, String assignee, StatusTask status, LocalDateTime finishedAt, LocalDateTime createdAt, String title) {
 
         this.project = project;
         this.estimateHours = estimateHours;
@@ -39,6 +41,7 @@ public class TaskData {
         this.status = status;
         this.finishedAt = finishedAt;
         this.createdAt = createdAt;
+        this.title = title;
     }
 
     public Long getIdTask() {
@@ -95,5 +98,13 @@ public class TaskData {
 
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 }

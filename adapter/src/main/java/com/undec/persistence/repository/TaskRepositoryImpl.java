@@ -31,7 +31,7 @@ public class TaskRepositoryImpl implements TaskRepository {
     @Override
     public List<Task> findByProject(Long projectId) {
 
-        return taskRepositoryCrud.findByProjectwithID(projectId).
+        return taskRepositoryCrud.findByProject_Id(projectId).
                                     stream().
                                     map(TaskMapper::mapToTaskDomain).
                                     collect(Collectors.toList());
