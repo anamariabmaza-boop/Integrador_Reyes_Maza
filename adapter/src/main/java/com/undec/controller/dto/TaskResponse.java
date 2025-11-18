@@ -24,8 +24,10 @@ public class TaskResponse {
     private LocalDateTime finishedAt;
     @JsonProperty("idTask")
     private LocalDateTime createdAt;
+    @JsonProperty("title")
+    private String title;
 
-    public TaskResponse(Long idTask, Project project, Integer estimateHours, String assignee, StatusTask status, LocalDateTime finishedAt, LocalDateTime createdAt) {
+    public TaskResponse(Long idTask, Project project, Integer estimateHours, String assignee, StatusTask status, LocalDateTime finishedAt, LocalDateTime createdAt, String title) {
         this.idTask = idTask;
         this.project = project;
         this.estimateHours = estimateHours;
@@ -33,6 +35,7 @@ public class TaskResponse {
         this.status = status;
         this.finishedAt = finishedAt;
         this.createdAt = createdAt;
+        this.title = title;
     }
 
     public Long getIdTask() {
@@ -91,8 +94,16 @@ public class TaskResponse {
         this.createdAt = createdAt;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     public static TaskResponse fromDomainTask(Task task){
         return new TaskResponse(task.getIdTask(), task.getProject(), task.getEstimateHours(),
-                task.getAssignee(), task.getStatus(), task.getFinishedAt(), task.getCreatedAt());
+                task.getAssignee(), task.getStatus(), task.getFinishedAt(), task.getCreatedAt(), task.getTitle());
     }
 }
