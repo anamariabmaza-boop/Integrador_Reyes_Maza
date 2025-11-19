@@ -11,18 +11,18 @@ public class TaskResponse {
 
     @JsonProperty("idTask")
     private Long idTask;
-    @JsonProperty("idTask")
+    @JsonProperty("project")
     private Project project;
     //Agregar variable title
-    @JsonProperty("idTask")
+    @JsonProperty("estimateHours")
     private Integer estimateHours;
-    @JsonProperty("idTask")
+    @JsonProperty("assignee")
     private String assignee;
-    @JsonProperty("idTask")
+    @JsonProperty("status")
     private StatusTask status;
-    @JsonProperty("idTask")
+    @JsonProperty("finishedAt")
     private LocalDateTime finishedAt;
-    @JsonProperty("idTask")
+    @JsonProperty("createdAt")
     private LocalDateTime createdAt;
     @JsonProperty("title")
     private String title;

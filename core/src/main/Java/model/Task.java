@@ -42,7 +42,7 @@ public class Task {
                                LocalDateTime createdAt,
                                String title) {
 
-        if (idTask == null || idTask <= 0) {
+        if (idTask != null && idTask <= 0) {
             throw new ValidationException("The task id can't be null or less than zero");
         }
 

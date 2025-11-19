@@ -12,18 +12,18 @@ public class TaskRequest {
 
     @JsonProperty("idTask")
     private Long idTask;
-    @JsonProperty("idTask")
+    @JsonProperty("project_id")
     private Project project;
     //Agregar variable title
-    @JsonProperty("idTask")
+    @JsonProperty("estimateHours")
     private Integer estimateHours;
-    @JsonProperty("idTask")
+    @JsonProperty("assignee")
     private String assignee;
-    @JsonProperty("idTask")
+    @JsonProperty("status")
     private StatusTask status;
-    @JsonProperty("idTask")
+    @JsonProperty("finishedAt")
     private LocalDateTime finishedAt;
-    @JsonProperty("idTask")
+    @JsonProperty("createdAt")
     private LocalDateTime createdAt;
     @JsonProperty("title")
     private String title;
@@ -47,17 +47,11 @@ public class TaskRequest {
         this.idTask = idTask;
     }
 
-    public Project getProject() {
-        return project;
-    }
+    public Project getProject() {return project;}
 
-    public void setProject(Project project) {
-        this.project = project;
-    }
+    public void setProject(Project project) {this.project = project;}
 
-    public Integer getEstimateHours() {
-        return estimateHours;
-    }
+    public Integer getEstimateHours() {return estimateHours;}
 
     public void setEstimateHours(Integer estimateHours) {
         this.estimateHours = estimateHours;
