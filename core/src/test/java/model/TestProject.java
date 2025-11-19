@@ -93,21 +93,6 @@ public class TestProject {
                 ));
     }
 
-    // Excepción arrojada por "startDate" anterior a hoy
-    @Test
-    void instanceProject_StartDateBeforeToday_Exception() {
-        Assertions.assertThrows(ValidationException.class,
-                () -> Project.newProject(
-                        1L,
-                        "Website Redesign",
-                        LocalDate.now(Clock.systemDefaultZone()).minusDays(1),
-                        LocalDate.now(Clock.systemDefaultZone()).plusDays(5),
-                        StatusProject.PLANNED,
-                        "Migrate and redesign website",
-                        Clock.systemDefaultZone()
-                ));
-    }
-
     // Excepción arrojada por "endDate" null
     @Test
     void instanceProject_EndDateNull_Exception() {

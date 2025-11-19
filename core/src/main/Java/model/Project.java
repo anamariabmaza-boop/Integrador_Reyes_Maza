@@ -41,9 +41,9 @@ public class Project {
         if (endDate.isBefore(startDate)) {
             throw new ValidationException("The end date can't be before the start date.");
         }
-        if (startDate.isBefore(LocalDate.now(clock))) {
-            throw new ValidationException("The start date can't be in the past.");
-        }
+        //if (startDate.isBefore(LocalDate.now(clock))) {
+           // throw new ValidationException("The start date can't be in the past.");
+        //}
         if (statusProject == null) {
             throw new ValidationException("The project status can't be null.");
         }

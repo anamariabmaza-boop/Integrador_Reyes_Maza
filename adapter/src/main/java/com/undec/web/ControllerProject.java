@@ -1,13 +1,11 @@
 package com.undec.web;
 
-import com.undec.controller.dto.ProjectRequest;
-import com.undec.controller.dto.ProjectResponse;
-import com.undec.controller.dto.TaskRequest;
-import com.undec.controller.dto.TaskResponse;
+import com.undec.controller.dto.*;
 import input.*;
 import model.StatusTask;
 import model.Task;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.ErrorResponse;
 import org.springframework.web.bind.annotation.*;
 import usecase.ProjectSummaryResponseModel;
 
@@ -35,48 +33,69 @@ public class ControllerProject {
     }
     // create porject
     @PostMapping
-    public ResponseEntity<ProjectResponse> createProject(@RequestBody ProjectRequest request) {
-        var project = createProjectInput.createProject(request.toDomainProject(clock));
-        return ResponseEntity.ok(ProjectResponse.fromDomainProject(project));
+    public ResponseEntity<?> createProject(@RequestBody ProjectRequest request) {
+        try {
+            var project = createProjectInput.createProject(request.toDomainProject(clock));
+            return ResponseEntity.ok(ProjectResponse.fromDomainProject(project));
+        }
+        catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
     //create task
     @PostMapping("/{projectId}/task")
-    public ResponseEntity<TaskResponse> createTask(@RequestBody TaskRequest request,@PathVariable Long projectId) {
-        var requestTask=request.toDomainTask();
-        var task = createTaskInput.createTask(requestTask.getIdTask(),
-                                                projectId,
-                                            requestTask.getEstimateHours()
-                                            ,requestTask.getAssignee()
-                                            ,requestTask.getStatus(),
-                                            requestTask.getFinishedAt(),
-                                            requestTask.getCreatedAt(),requestTask.getTitle());
-            return  ResponseEntity.ok(TaskResponse.fromDomainTask(task));
+    public ResponseEntity<?> createTask(@RequestBody TaskRequest request,@PathVariable Long projectId) {
+        try {
+            var requestTask = request.toDomainTask();
+            var task = createTaskInput.createTask(requestTask.getIdTask(),
+                    projectId,
+                    requestTask.getEstimateHours()
+                    , requestTask.getAssignee()
+                    , requestTask.getStatus(),
+                    requestTask.getFinishedAt(),
+                    requestTask.getCreatedAt(), requestTask.getTitle());
+            return ResponseEntity.ok(TaskResponse.fromDomainTask(task));
+        }catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
+    }
 
 
     //get project summary
     @GetMapping("/{projectId}/summary")
-    public ResponseEntity<ProjectSummaryResponseModel> getProjectSummary(@PathVariable Long projectId){
-    var summary = getProjectSummaryInput.getProjectSummary(projectId);
-
-    return ResponseEntity.ok(summary);
+    public ResponseEntity<?> getProjectSummary(@PathVariable Long projectId){
+        try {
+            var summary = getProjectSummaryInput.getProjectSummary(projectId);
+            var projectSummary = ProjectSummaryResponse.fromDomainProjectSummary(summary);
+            return ResponseEntity.ok(projectSummary);
+        }catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
     //find task by project and status
     @GetMapping("/{projectId}/tasks")
-    public ResponseEntity<List<TaskResponse>> findTaskByStatus (@PathVariable Long projectId, @RequestParam StatusTask status) {
-        List<Task> tasks = findTaskByProjectAndStatusInput.findTasksByProjectAndStatus(projectId, status);
-        List<TaskResponse> response = tasks.stream().map(TaskResponse::fromDomainTask).toList();
-        return ResponseEntity.ok(response);
+    public ResponseEntity<?> findTaskByStatus (@PathVariable Long projectId, @RequestParam StatusTask status) {
+        try {
+            List<Task> tasks = findTaskByProjectAndStatusInput.findTasksByProjectAndStatus(projectId, status);
+            List<TaskResponse> response = tasks.stream().map(TaskResponse::fromDomainTask).toList();
+            return ResponseEntity.ok(response);
+        }catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
 
     //exportProjectTask
     //Aca se podria transformar en CSV? el resultado
     @GetMapping("/{projectId}/tasks/export")
-    public ResponseEntity<List<String>> exportTasks(@PathVariable Long projectId) {
-        List<String> exported = exportProjectTaskInput.exportProjectTask(projectId);
-        return ResponseEntity.ok(exported);
+    public ResponseEntity<?> exportTasks(@PathVariable Long projectId) {
+        try {
+            List<String> exported = exportProjectTaskInput.exportProjectTask(projectId);
+            return ResponseEntity.ok(exported);
+        }catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 }

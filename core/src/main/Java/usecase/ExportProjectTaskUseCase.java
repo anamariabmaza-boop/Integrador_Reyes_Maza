@@ -39,7 +39,9 @@ public class ExportProjectTaskUseCase implements ExportProjectTaskInput {
                 s.getAssignee(),
                 s.getStatus().name(),
                 s.getTitle(),
-                String.valueOf(s.getEstimateHours())
+                String.valueOf(s.getEstimateHours()),
+                s.getCreatedAt().toString(),
+                s.getFinishedAt() != null ? s.getFinishedAt().toString() : ""
                 )).toList();
 
         List<String> outputCSV = Stream.concat(
